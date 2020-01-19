@@ -6,37 +6,65 @@ public class VirtualPet2App {
 
 		VirtualPet2 newPet = new VirtualPet2(0, 0, 0, null, "Alive");
 
-		VirtualPet2.startMenu();
+		System.out.println("Welcome to virtual pet.");
+		System.out.println("Would you like a baby pet, or to adopt from the shelter?");
+		System.out.println("Type \"baby\" or \'\"shelter\".");
+
 		Scanner input = new Scanner(System.in);
-		String userChoice = input.next();
+		String userChoice = input.nextLine();
 		if (userChoice.contains("shelter")) {
 			newPet.shelterPet();
 		}
-		
-		newPet.namePet();
-		newPet.currentStats();
 
-//		Scanner input = new Scanner(System.in);
+		System.out.println("Give your buddy a special Name.");
+		String userName = input.nextLine();
+		newPet.petName = userName;
+		System.out.println("Greetings " + newPet.petName);
+
 		
+
 		for (newPet.getStatus(); newPet.status.contentEquals("Alive"); newPet.tick()) {
+			
+			System.out.println("");
+			newPet.currentHungerStats();
+			System.out.println(VirtualPet2.hungerWarning);
+			newPet.currentThirstStats();
+			System.out.println(VirtualPet2.thirstWarning);
+			newPet.currentBoredomStats();
+			System.out.println(VirtualPet2.boredomWarning);
+			System.out.println("");
+			
+			if (newPet.getBoredom() > 15) {
+				System.out.println(newPet.petName + " has run away.");
+				System.exit(0);
+			}
+			
+			System.out.println("");
+			System.out.println("What would you like to do with your pet?");
+			System.out.println("Choose corresponding number below.");
+			System.out.println(" 1. Feed");
+			System.out.println(" 2. Water");
+			System.out.println(" 3. Play");
+			System.out.println(" 4. Fetch");
+			System.out.println("");
 
-			VirtualPet2.mainMenu();
-			String action = input.next();// this reeks bad, so bad it broke my console.
+			String action = input.next();
 
-			if (action == "1") {
+			if (action.contentEquals("1")) {
 				newPet.eat();
 			}
-			if (action == "2") {
+			if (action.contentEquals("2")) {
 				newPet.drink();
 			}
-			if (action == "3") {
+			if (action.contentEquals("3")) {
 				newPet.play();
 			}
-			if (action == "4") {
+			if (action.contentEquals("4")) {
 				newPet.fetch();
+				System.out.println(newPet.fetchThing);
 			}
 			newPet.getStatus();
-			newPet.currentStats();
+			
 		}
 
 		System.out.println("Your pet has died.");

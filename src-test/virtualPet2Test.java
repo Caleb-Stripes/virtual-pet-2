@@ -28,28 +28,38 @@ class virtualPet2Test {
 	}
 	
 	@Test
-	public void hungerShouldDecreaseBy1AfterEat() {
+	public void hungerShouldDecreaseBy3AfterEat() {
 		int beforeEat = underTest.getHunger();
 		underTest.eat();
 		int result = underTest.getHunger();
-		assertEquals(beforeEat-1, result);
+		assertEquals(beforeEat-3, result);
 	}
 	
 	@Test
-	public void thirstShouldDecreaseBy1AfterDrink() {
+	public void thirstShouldDecreaseBy5AfterDrink() {
 		int beforeDrink = underTest.getThirst();
 		underTest.drink();
 		int result = underTest.getThirst();
-		assertEquals(beforeDrink-1, result);
+		assertEquals(beforeDrink-5, result);
 	}
 	
 	@Test
-	public void boredomShouldDecreaseBy1AfterPlay() {
+	public void boredomShouldDecreaseBy2AfterPlay() {
 		int beforePlay = underTest.getBoredom();
 		underTest.play();
 		int result = underTest.getBoredom();
-		assertEquals(beforePlay-1, result);
+		assertEquals(beforePlay-2, result);
 		
+	}
+	
+	@Test
+	public void ifHungerGoesBelowZeroShouldBeZero() {
+		underTest.testPet();
+		int beforeHunger = underTest.getHunger();
+		underTest.eat();
+		int afterHunger = underTest.getHunger();
+		assertEquals(1, beforeHunger);
+		assertEquals(0, afterHunger);
 	}
 
 	@Test
